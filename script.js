@@ -14,24 +14,31 @@ function getWeather(){
         var description = data.weather[0].description;
 		var condition = data.weather[0].main;
 		var sunset = data.sys.sunset;
-		  console.log(sunset);
-		var curTime = new Date().getTime();
-		  console.log(curTime);
+		  console.log("sunset is " + sunset);
+		var curTime = $.now();
+		  curTime = curTime.toString();
+		  curTime = curTime.slice(0, 10);
+		  curTime = Number(curTime);
+		  console.log("time is " + curTime);
+		  console.log(typeof(curTime));
+		   console.log(typeof(sunset));
+		   console.log(sunset > curTime);
+		  
         var clouds = data.clouds.all;
-        var color = function(cl){
-			cl = clouds;
-          if(cl > 0){
-            return 'grey';
-          }
-          else {
-            return 'lightblue';
-          }
-        }
+    //    var color = function(cl){
+	//		cl = clouds;
+    //    if(cl > 0){
+    //        return 'grey';
+    //      }
+    //      else {
+    //        return 'lightblue';
+    //      }
+    //    }
 		
 		var cond = condition.toLowerCase();
 		 var back = getBack(cond);
 		function getBack(c){
-			if (curTime > sunset){
+			if (curTime < sunset){
 				return 'img/backs/night-sky.jpg';
 			}
 			else 
@@ -58,27 +65,33 @@ function getWeather(){
         
         }
 		  
-        $("body").css("background-color", color);
-		  $("#wrapper").css("background-image",'url('+ back +')');
+     //   $("body").css("background-color", color);
+	  // $("#wrapper").css("background-image",'url('+ back +')');
+		   $("body").css("background-image",'url('+ back +')');
 		  console.log('url('+ back +')');
 		 
         var wind = data.wind.speed;
        var iconCode = data.weather[0].icon;
       var iconURL = "http://openweathermap.org/img/w/" + iconCode + ".png";
-$("#icon").prepend("<img src='" + iconURL +  "'/>");       $("#temperature").text(Math.round(tempr) + ' ℃' );
+$("#icon").prepend("<img src='" + iconURL +  "'/>");       $("#temperature").html(Math.round(tempr) + ' &deg;F' );
   $("#location").text(city + ', ' + country);
-         $("#cloudy").text(function(num){
-           num = clouds;
-          if (clouds > 0){
-            return "It is " + num + "% cloudy right now";
-          }
-          else {
-           }
-        });
+//         $("#cloudy").text(function(num){
+//           num = clouds;
+//          if (clouds > 0){
+//            return "It is " + num + "% cloudy right now";
+//          }
+//          else {
+//           }
+//        });
         $("#description").text(description);
 $("#wind").text("Wind " + Math.round(wind) + " mph");
       }
     });
+
+// getting sunset info for the night sky background
+sunset_api_url = 'http://api.sunrise-sunset.org/json?lat=' + lat + '&lng=' + lon';
+
+
   }
   
 }
@@ -92,5 +105,6 @@ $(document).ready(function(){
   } else {
     alert("Your browser doesn't support geolocation.");
   }
-  
+ 
+	
 });

@@ -1,15 +1,51 @@
 body {
-  font-size: 2em;
+  
+	background-size: cover;
+	background-repeat: no-repeat;
+	font-weight: normal;
 }
 
+.app-title, .footer {
+    color: #3e6990;
+    font-family: Palatino, 'Palatino Linotype', 'Palatino LT STD', 'Book Antiqua', Georgia, serif;
+    font-style: italic;
+}
+.app-title {
+	font-size: 1em;
+	 padding-top: 67px;
+}
+.footer>p {
+	font-size: 1em;
+	position: absolute;
+	bottom: 0;
+	text-align: center;
+	width: 100%;
+}
 #wrapper {
+	font-size: 4em;
 	text-align: center;
     display: block;
-    height: 800px;
+    height: 90vh;
+	min-height: 628px;
     margin: 0 auto;
-    width: 444px;
+    min-width: 444px;
 	background-size: contain;
 	background-repeat: none;
+	font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+	margin-top: 50px;
+	border-radius: 34px;
+	
+}
+/* adjustments for desktop devices*/
+@media (min-device-width: 600px){
+	#wrapper {
+		width: 444px;
+		font-size: 2em;
+		border: 4px solid rgba(233,227,180,0.8);
+	}
+	.layer {
+		top: 15px!important;
+	}
 }
 
 #description {
@@ -18,7 +54,22 @@ body {
 #icon img {
   width: 100px;
 }
-footer p{
-  padding-top: 70px;
-  font-size: 0.5em;
+
+.layer {
+    background-color: rgba(233,227,180,0.8);
+    width: 89%;
+    margin: 0 auto;
+    position: relative;
+    top: 50px;
+    height: 90%;
+    border-radius: 34px;
+}
+
+.footer a {
+	text-decoration: none;
+	color: #3e6990;
+	font-weight: bold;
+}
+.footer a:hover {
+	text-decoration: underline;
 }
